@@ -1,0 +1,34 @@
+.contact {
+  backdrop-filter: blur(16px) saturate(180%);
+  background-color: #88BDBC;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
+  padding: 10px 10px 10px 20px;
+  filter: drop-shadow(0 30px 10px rgba(0, 0, 0, 0.125));
+  display: flex;
+  align-items: center;
+  width: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact:hover {
+  cursor: pointer;
+  transform: scale(1.01);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.contact-title {
+  font-family: 'Righteous', sans-serif;
+  text-transform: uppercase;
+  font-size: 18px;
+  margin-left: 50px;
+}
+
+.contact-avatar {
+  width: 80px;
+}
+
+.contact-control {
+  display: flex;
+  gap: 20px;
+}
