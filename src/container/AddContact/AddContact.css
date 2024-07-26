@@ -1,6 +1,7 @@
 .add-container {
   margin: 50px auto;
   width: 45%;
+  min-height: max-content;
 }
 
 form {

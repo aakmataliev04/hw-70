@@ -30,3 +30,30 @@ export const createContact: AsyncThunk<void, ApiContact, { dispatch: AppDispatch
       await axiosApi.post('/contacts.json', contact);
     }
   );
+
+export const fetchOneContact: AsyncThunk<ApiContact, string, { dispatch: AppDispatch }> = createAsyncThunk<ApiContact, string>(
+  'contacts/fetchOneContact',
+  async (id) => {
+    const { data: dish } = await axiosApi.get<ApiContact | null>(
+      `/contacts/${id}.json`,
+    );
+    if (dish === null) {
+      throw new Error('Not Found');
+    }
+    return dish;
+  },
+);
+
+export const updateContact: AsyncThunk<void, {id: string, contact: ApiContact}, {dispatch: AppDispatch}> = createAsyncThunk<void, {id: string, contact: ApiContact}>(
+  'contacts/updateContact',
+  async ({id, contact}) => {
+    await axiosApi.put(`/contacts/${id}.json`, contact);
+  },
+);
+
+export const deleteContact: AsyncThunk<void, string, { dispatch: AppDispatch }> = createAsyncThunk<void, string>(
+  'contacts/deleteContact',
+  async (contactId) => {
+      await axiosApi.delete(`/contacts/${contactId}.json`);
+  },
+);

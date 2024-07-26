@@ -4,7 +4,7 @@ import './Footer.css';
 const Footer: React.FC = () => {
   return (
     <footer id="footer">
-      <div className="container ">
+      <div className="container">
         <div className="abt">
           <h3>About IsItWP</h3>
           <div className="desc">

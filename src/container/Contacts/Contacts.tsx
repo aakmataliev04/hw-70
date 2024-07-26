@@ -4,6 +4,7 @@ import {selectContacts} from '../../store/contactsSlice';
 import {fetchContacts} from '../../store/contactsThunks';
 import ContactsItem from '../../components/ContactsItem/ContactsItem';
 import './Contacts.css';
+import Preloader from '../../components/Preloader/Preloader';
 
 const Contacts: React.FC = () => {
   const contacts = useAppSelector(selectContacts);
@@ -12,16 +13,16 @@ const Contacts: React.FC = () => {
     useEffect(() => {
       dispatch(fetchContacts());
     }, [dispatch]);
-  console.log(contacts);
+
   return (
     <div className={'meals-list'}>
       {
-        contacts !== null ? (
+         contacts !== null ? (
           contacts.map((contact) => {
             return (<ContactsItem key={contact.id} contact={contact}/>);
           })
         ) : (
-          <h2>There is no Meals</h2>
+          <div style={{display: 'flex', justifyContent: 'center', padding: '30vh 0'}}><Preloader/></div>
         )
       }
     </div>

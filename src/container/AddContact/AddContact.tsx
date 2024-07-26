@@ -1,25 +1,46 @@
-import React, {ChangeEvent, FormEvent} from 'react';
+import React, {ChangeEvent, FormEvent, useEffect} from 'react';
 import './AddContact.css';
 import {useAppDispatch, useAppSelector} from '../../app/hook';
-import {selectContactMutation, setContactMutation} from '../../store/contactsSlice';
+import {
+  clearContactMutation,
+  selectContactMutation,
+  selectIsCreating, selectIsUpdatingContact,
+  setContactMutation
+} from '../../store/contactsSlice';
 import {ApiContact} from '../../types';
 import {toast} from 'react-toastify';
 import {useNavigate} from 'react-router-dom';
-import {createContact} from '../../store/contactsThunks';
+import {createContact, updateContact} from '../../store/contactsThunks';
+import ButtonSpinner from '../../components/ButtonSpinner/ButtonSpinner';
 
-const AddContact: React.FC = () => {
+interface Props {
+  id?: string | undefined;
+}
+
+const AddContact: React.FC<Props> = ({id}) => {
   const dispatch = useAppDispatch();
   const contactMutation = useAppSelector(selectContactMutation);
   const navigate = useNavigate();
+  const isCreating = useAppSelector(selectIsCreating);
+  const isUpdating = useAppSelector(selectIsUpdatingContact);
 
+
+  useEffect(() => {
+    dispatch(clearContactMutation());
+  }, [dispatch]);
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>, contact: ApiContact) => {
     event.preventDefault();
     try {
-      await dispatch(createContact(contact)).unwrap();
-      toast.success('Contact Created!');
+      if (id) {
+        await dispatch(updateContact({id, contact})).unwrap();
+      } else {
+        await dispatch(createContact(contact)).unwrap();
+
+      }
+      toast.success('Contact Saved!');
     } catch (e) {
-      toast.error('Could not create contact!');
+      toast.error('Could not save contact!');
     } finally {
       navigate('/');
     }
@@ -27,8 +48,9 @@ const AddContact: React.FC = () => {
   const changeMutation = (event: ChangeEvent<HTMLInputElement>) => {
     const name = event.target.name;
     const value = event.target.value;
-    dispatch(setContactMutation({name , value}));
+    dispatch(setContactMutation({name, value}));
   };
+
   const form = (
     <form onSubmit={(event) => onSubmit(event, contactMutation)}>
       <div className="form-group">
@@ -93,18 +115,20 @@ const AddContact: React.FC = () => {
         <img className={'photo-preview-image'} src={contactMutation.photoUrl} alt=""/>
       </div>
 
-      <button type="submit" className="btn">
-        {/*{isLoading && <ButtonSpinner />}*/}
+      <button type="submit" className="btn" disabled={isCreating}>
+        {isCreating || isUpdating ? <ButtonSpinner/> : null}
         {'Save'}
       </button>
     </form>
   );
   return (
-    <div className={'container add-container'}>
-      <h2>Add New Contact</h2>
+    <>
+      <div className={'container add-container'}>
+        <h2>{id ? 'Edit Contact' : 'Add New Contact'}</h2>
 
-      {form}
-    </div>
+        {form}
+      </div>
+    </>
   );
 };
 
