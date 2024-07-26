@@ -1,4 +1,3 @@
-
 import './ButtonSpinner.css';
 
 const ButtonSpinner = () => {

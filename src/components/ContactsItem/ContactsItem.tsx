@@ -29,14 +29,13 @@ const ContactsItem: React.FC<Props> = ({contact}) => {
   };
   const modalContent = (
     <>
-      <div className="contact-info" style={{display: 'flex', justifyContent: 'center', gap: '30px'}}>
-        <div className="contact-info-imageWrapper" style={{width: '150px'}}>
+      <div className="contact-info">
+        <div className="contact-info-imageWrapper">
           <img src={contact.photoUrl} alt={contact.name}/>
         </div>
         <div className="contact-details-wrapper">
           <h2>{contact.name}</h2>
-          <div className="contact-details"
-               style={{display: 'flex', alignItems: 'center', flexDirection: 'column', gap: '10px'}}>
+          <div className="contact-details">
             <a href="#" className="phone">{contact.phone}</a>
             <a href="#" className="phone">{contact.email}</a>
           </div>

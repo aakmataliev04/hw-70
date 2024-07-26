@@ -7,7 +7,7 @@ import {selectIsLoadingOneContact} from '../../store/contactsSlice';
 import Preloader from '../../components/Preloader/Preloader';
 
 const EditContact: React.FC = () => {
-  const { id } = useParams();
+  const {id} = useParams();
   const dispatch = useAppDispatch();
   const isLoadingContact = useAppSelector(selectIsLoadingOneContact);
 
@@ -22,8 +22,8 @@ const EditContact: React.FC = () => {
     <>
       {
         isLoadingContact ?
-        <div style={{display: 'flex', justifyContent: 'center', padding: '36vh 0'}}><Preloader/></div>
-        : <AddContact id={id && id}/>
+          <div style={{display: 'flex', justifyContent: 'center', padding: '36vh 0'}}><Preloader/></div>
+          : <AddContact id={id && id}/>
       }
     </>
   );

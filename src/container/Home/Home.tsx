@@ -4,7 +4,7 @@ import Contacts from '../Contacts/Contacts';
 const Home: React.FC = () => {
   return (
     <>
-      <Contacts />
+      <Contacts/>
     </>
   );
 };

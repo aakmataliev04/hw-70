@@ -10,14 +10,14 @@ const Contacts: React.FC = () => {
   const contacts = useAppSelector(selectContacts);
   const dispatch = useAppDispatch();
 
-    useEffect(() => {
-      dispatch(fetchContacts());
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <div className={'meals-list'}>
       {
-         contacts !== null ? (
+        contacts !== null ? (
           contacts.map((contact) => {
             return (<ContactsItem key={contact.id} contact={contact}/>);
           })

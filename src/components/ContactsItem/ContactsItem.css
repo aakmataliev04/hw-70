@@ -17,6 +17,23 @@
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
+.contact-info {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.contact-info-imageWrapper {
+  width: 150px;
+}
+
+.contact-details {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .contact-title {
   font-family: 'Righteous', sans-serif;
   text-transform: uppercase;
@@ -41,12 +58,14 @@
   justify-content: center;
   gap: 20px;
 }
+
 .phone {
   color: #112D32;
   letter-spacing: 1px;
   font-weight: 600;
   font-size: 14px;
 }
+
 .contact-btn {
   min-width: 140px;
   min-height: 35px;
@@ -61,10 +80,10 @@
   font-weight: 700;
   color: #112D32;
   background: #4FD1C5;
-  background: linear-gradient(90deg, rgba(129,230,217,1) 0%, rgba(79,209,197,1) 100%);
+  background: linear-gradient(90deg, rgba(129, 230, 217, 1) 0%, rgba(79, 209, 197, 1) 100%);
   border: none;
   border-radius: 1000px;
-  box-shadow: 12px 12px 24px rgba(79,209,197,.64);
+  box-shadow: 12px 12px 24px rgba(79, 209, 197, .64);
   transition: all 0.3s ease-in-out 0s;
   cursor: pointer;
   outline: none;
@@ -79,7 +98,7 @@
   min-width: calc(140px + 10px);
   min-height: calc(35px + 10px);
   border: 3px solid #00FFCB;
-  box-shadow: 0 0 60px rgba(0,255,203,.64);
+  box-shadow: 0 0 60px rgba(0, 255, 203, .64);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -100,7 +119,8 @@
 
 .contact-btn::after {
   content: '';
-  width: 30px; height: 30px;
+  width: 30px;
+  height: 30px;
   border-radius: 100%;
   border: 5px solid #00FFCB;
   position: absolute;
@@ -121,17 +141,19 @@
   background: #e61919;
   color: white;
 }
+
 .contact-delete-btn:hover {
   background: #b81414;
 
 }
+
 .contact-delete-btn:before {
   content: '';
   border-radius: 1000px;
   min-width: calc(140px + 10px);
   min-height: calc(35px + 10px);
   border: 3px solid red;
-  box-shadow: 0 0 60px rgba(0,255,203,.64);
+  box-shadow: 0 0 60px rgba(0, 255, 203, .64);
   position: absolute;
   top: 50%;
   left: 50%;
